@@ -15,7 +15,6 @@ llm = ChatGroq(
     max_tokens=1024
 )
 
-# Prompt template con rol y restricciones
 prompt_template = ChatPromptTemplate.from_messages([
     ("system", """Sos un Analista de Causa Raíz (Root Cause Analyst) especializado en sistemas de software.
 
@@ -42,12 +41,20 @@ def responder(pregunta: str, contexto: str) -> str:
     return respuesta.content
 
 
+# 👇 Reemplazá todo el bloque anterior por este
 if __name__ == "__main__":
     from tools import buscar_incidente
 
-    pregunta = "¿Por qué se congela el rastreo los viernes?"
-    contexto = buscar_incidente(pregunta)
-    respuesta = responder(pregunta, contexto)
+    preguntas = [
+        "¿Por qué dos conductores reciben el mismo pedido?",
+        "¿Por qué se congela el rastreo los viernes?",
+        "¿Por qué a los clientes se les cobra dos veces?"
+    ]
 
-    print("🤖 Respuesta del agente:\n")
-    print(respuesta)
+    for pregunta in preguntas:
+        contexto = buscar_incidente(pregunta)
+        respuesta = responder(pregunta, contexto)
+        print(f"\n{'='*60}")
+        print(f"❓ Pregunta: {pregunta}")
+        print(f"{'='*60}")
+        print(respuesta)

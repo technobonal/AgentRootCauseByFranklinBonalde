@@ -26,7 +26,7 @@ def obtener_vectorstore():
 
 def obtener_retriever():
     vectorstore = obtener_vectorstore()
-    return vectorstore.as_retriever(search_kwargs={"k": 3})
+    return vectorstore.as_retriever(search_kwargs={"k": 4})
 
 # Esto SOLO se ejecuta si corrés "python rag.py" directamente,
 # NO cuando tools.py importa este archivo
