@@ -18,47 +18,47 @@ El agente identifica el incidente correspondiente, explica su **causa raíz téc
 El flujo del sistema sigue un patrón **RAG (Retrieval-Augmented Generation)**:
 
 ```
-┌───────────────────┐     ┌───────────────────┐     ┌───────────────────┐
-│  PDF Incidentes     │     │  PDF Causa Raíz     │     │  Usuario (input)    │
-└─────────┬──────────┘     └─────────┬──────────┘     └─────────┬──────────┘
+┌───────────────────┐     ┌───────────────────┐     ┌─────────────── ────┐
+│  PDF Incidentes   │     │  PDF Causa Raíz   │     │  Usuario (input)   │
+└─────────┬─────────┘     └────────┬──────────┘     └─────────┬──────────┘
           │                          │                          │
           └────────────┬─────────────┘                          │
                         ▼                                       │
               ┌────────────────────┐                            │
-              │  Carga y chunking    │                          │
-              │      (rag.py)        │                          │
-              └──────────┬──────────┘                           │
+              │  Carga y chunking  │                            │
+              │      (rag.py)      │                            │
+              └──────────┬─────────┘                            
                          ▼                                      │
               ┌────────────────────┐                            │
-              │  Embeddings Cohere   │                          │
-              └──────────┬──────────┘                           │
+              │  Embeddings Cohere │                            │
+              └──────────┬─────────┘                            │
                          ▼                                      │
-              ┌────────────────────┐                            │
-              │  Índice Pinecone     │◄────────────────────────┘
-              │   (vector store)     │      (busca contexto relevante)
+              ┌───────────────── ───┐                           │
+              │  Índice Pinecone    │◄───────────  ─────────────┘
+              │   (vector store)    │      (busca contexto relevante)
               └──────────┬──────────┘
                          ▼
               ┌────────────────────┐
-              │  Retriever (k=4)      │
-              │     (tools.py)        │
-              └──────────┬──────────┘
+              │  Retriever (k=4)   │
+              │     (tools.py)     │
+              └──────────┬─────────┘
                          ▼
               ┌────────────────────┐
-              │  Prompt Template      │
-              │  + LLM Groq (LCEL)     │
-              │     (agente.py)        │
-              └──────────┬──────────┘
+              │  Prompt Template   │
+              │  + LLM Groq (LCEL) │
+              │     (agente.py)    │
+              └──────────┬─────────┘
                          ▼
               ┌────────────────────┐
-              │  Respuesta final:      │
-              │  Incidente +            │
-              │  Causa Raíz +           │
-              │  Solución                │
-              └──────────┬──────────┘
+              │  Respuesta final:  │
+              │  Incidente +       │
+              │  Causa Raíz +      │
+              │  Solución          │
+              └──────────┬─────────┘
                          ▼
               ┌────────────────────┐
-              │  Interfaz Streamlit    │
-              │      (app.py)           │
+              │ Interfaz Streamlit │
+              │      (app.py)      │
               └────────────────────┘
 ```
 
