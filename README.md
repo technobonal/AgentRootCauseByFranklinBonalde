@@ -210,6 +210,8 @@ La aplicación se encuentra desplegada y disponible públicamente en:
 
 Además del despliegue en Streamlit Community Cloud, este proyecto está desplegado en una instancia propia de OCI, con Nginx como reverse proxy y HTTPS habilitado.
 
+Link: https://136.248.122.22/
+
 ### Arquitectura del despliegue
 - **Instancia:** VM.Standard.E3.Flex — Oracle Linux 9.7
 - **Región:** sa-saopaulo-1
